@@ -1,0 +1,66 @@
+﻿@model IEnumerable<FudbalskiTurnirWeb.Models.Match>
+
+@{
+    ViewData["Title"] = "Matches";
+}
+
+<h1>Matches</h1>
+
+<p>
+    <a asp-action="GeneratePairs">Make bracket</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeTeam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeTeamGoals)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AwayTeamGoals)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AwayTeam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeTeam.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeTeamGoals)
+            </td>
+            <td>
+                    @if (item.AwayTeamGoals == null)
+                    {
+                        @Html.Display("/")
+                        ;
+                    } else
+                    {
+                        @Html.DisplayFor(modelItem => item.AwayTeamGoals)
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AwayTeam.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

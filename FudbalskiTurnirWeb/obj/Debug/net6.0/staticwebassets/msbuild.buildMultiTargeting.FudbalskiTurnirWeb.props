@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\FudbalskiTurnirWeb.props" />
+</Project>
